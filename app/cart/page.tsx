@@ -30,7 +30,7 @@ export default async function CartPage() {
     .maybeSingle();
   const isPremium = membership?.status === "active";
   const discount = isPremium ? subtotal * 0.1 : 0;
-  const shipping = lines.length === 0 ? 0 : isPremium ? 0 : 4.95;
+  const shipping = lines.length === 0 ? 0 : isPremium ? 0 : 0.99;
   const total = subtotal - discount + shipping;
 
   return (

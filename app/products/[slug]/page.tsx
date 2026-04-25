@@ -64,7 +64,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
 
           <div className="mt-8 card p-4 text-sm text-neutral-600 space-y-1">
-            <div>Free delivery on orders over €35.</div>
+            <div>Free delivery on orders over €10.</div>
             <div>Refundable within 14 days of delivery.</div>
           </div>
         </div>

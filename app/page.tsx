@@ -52,7 +52,7 @@ export default async function HomePage() {
         <div className="text-sm uppercase tracking-wider opacity-80">Welcome back</div>
         <h1 className="text-3xl font-bold mt-1">Shop your weekly groceries</h1>
         <p className="mt-2 opacity-90 max-w-md">
-          Free delivery on orders over €35. Become an AH Plus member to unlock 10% off and free shipping on every order.
+          Free delivery on orders over €10. Become an AH Plus member to unlock 10% off and free shipping on every order.
         </p>
       </section>
 

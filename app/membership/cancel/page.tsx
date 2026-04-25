@@ -51,7 +51,7 @@ export default async function CancelMembershipPage() {
 
             <ul className="mt-4 space-y-2 text-sm text-neutral-600">
               <li>• You&apos;ll lose 10% off every order.</li>
-              <li>• Delivery returns to €4.95 per order.</li>
+              <li>• Delivery returns to €0.99 per order.</li>
               <li>• You can re-subscribe at any time.</li>
             </ul>
 

@@ -111,7 +111,7 @@ export async function POST(req: Request) {
     .eq("user_id", userId)
     .maybeSingle();
   const isPremium = membership?.status === "active";
-  const shipping = isPremium ? 0 : 4.95;
+  const shipping = isPremium ? 0 : 0.99;
   const discount = isPremium ? subtotal * 0.1 : 0;
   const total = Number((subtotal - discount + shipping).toFixed(2));
 
