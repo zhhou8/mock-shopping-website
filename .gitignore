@@ -1,6 +1,8 @@
 node_modules/
 .next/
 .env.local
+.bunq-merchant.json
+.claude/
 *.log
 .DS_Store
 .vercel
