@@ -1,13 +1,12 @@
 -- BunqPal AH Mock Site — Product seed
 -- 30 catalog products + 1 membership SKU.
 -- Run AFTER schema.sql in the Supabase SQL editor.
--- Idempotent: clears products & cart_items before inserting.
+-- Idempotent: upserts so re-running won't break existing orders that
+-- already reference these product ids via order_items.
 
 delete from public.cart_items;
-delete from public.products;
 
--- Image URLs are direct Unsplash CDN links (free for commercial use).
--- Pattern: https://images.unsplash.com/photo-{id}?w=600&h=600&fit=crop&q=80&auto=format
+-- Image paths point to public/products/<id>.jpg in this Next.js app.
 
 insert into public.products
 (id, slug, name, brand, category, subcategory, description, price, image_url, unit_label, consumable, default_estimated_duration_days, subscription, cycle_days, refundable, refund_window_days)
@@ -58,4 +57,20 @@ values
 ('snacks_chocolate',       'puur-chocolade-100g',   'Pure Chocolate 70%',              'Tony''s Chocolonely', 'snacks', 'sweet',  'Fair trade dark chocolate, 70% cocoa.',         3.49, '/products/snacks_chocolate.jpg', '180g bar',           true,  30,  false, null, true, 14),
 
 -- Subscription (1) — AH Plus membership
-('membership_ahplus',      'ah-plus-membership',    'AH Plus Membership',              'AH',           'subscription','membership','Monthly household benefits.',                   4.99, '/products/membership_ahplus.jpg', 'monthly',            false, null, true,  30,  true, 14);
+('membership_ahplus',      'ah-plus-membership',    'AH Plus Membership',              'AH',           'subscription','membership','Monthly household benefits.',                   4.99, '/products/membership_ahplus.jpg', 'monthly',            false, null, true,  30,  true, 14)
+on conflict (id) do update set
+  slug                            = excluded.slug,
+  name                            = excluded.name,
+  brand                           = excluded.brand,
+  category                        = excluded.category,
+  subcategory                     = excluded.subcategory,
+  description                     = excluded.description,
+  price                           = excluded.price,
+  image_url                       = excluded.image_url,
+  unit_label                      = excluded.unit_label,
+  consumable                      = excluded.consumable,
+  default_estimated_duration_days = excluded.default_estimated_duration_days,
+  subscription                    = excluded.subscription,
+  cycle_days                      = excluded.cycle_days,
+  refundable                      = excluded.refundable,
+  refund_window_days              = excluded.refund_window_days;
